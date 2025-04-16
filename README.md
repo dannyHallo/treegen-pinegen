@@ -9,4 +9,4 @@ Each zip contains an `.exe` and related files. No install required — just unzi
 
 ## Downloads
 
-You can also find these files under [Releases](https://github.com/your-username/your-repo-name/releases) for easier downloading.
+You can also find these files under [Releases](https://github.com/NGNT/treegen-pinegen/releases) for easier downloading.
