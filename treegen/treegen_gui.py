@@ -279,8 +279,10 @@ def run_gui():
 
         label_widget = ttk.Label(row, text=label)
         label_widget.pack(side="left", padx=(0, 5))
-        label_widget.bind("<Enter>", lambda e, l=label: status.set(tooltips.get(l, "")))
-        label_widget.bind("<Leave>", lambda e: status.set(""))
+
+        # 👇 Move the tooltip to the full slider row instead of just the label
+        row.bind("<Enter>", lambda e, l=label: status.set(tooltips.get(l, "")))
+        row.bind("<Leave>", lambda e: status.set(""))
 
         val_label = ttk.Label(row, text=f"{var.get():.2f}")
         val_label.pack(side="right")
