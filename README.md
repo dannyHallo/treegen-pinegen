@@ -11,8 +11,8 @@ Both tools output **.vox files** that can be imported directly into **Teardown**
 
 Each zip contains everything you need — just unzip and run the `.exe`.
 
-- [`treegen.zip`](./treegen.zip) – treegen generator
-- [`pinegen.zip`](./pinegen.zip) – pinegen generator
+treegen.zip – treegen generator
+pinegen.zip – pinegen generator
 
 No installation required.
 Find these files under [Releases](https://github.com/NGNT/treegen-pinegen/releases) for easier downloading.
