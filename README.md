@@ -29,6 +29,7 @@ Find these files under [Releases](https://github.com/NGNT/treegen-pinegen/releas
 
 - Run the app
 - Tweak the sliders and settings
+- Choose whether or not to open the file automatically after generation
 - Click "Generate tree"
 - A `.vox` file is created with your tree model, ready for import
 
