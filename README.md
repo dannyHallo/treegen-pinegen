@@ -1,3 +1,7 @@
+<p align="center">
+  <img src="https://cdn.nostrcheck.me/fb7e6bb172c3dca7e29f7c7fcf3f57b2c82f5211db7e1f353efa272f9268e5e2.png" alt="treegen logo" />
+</p>
+
 # treegen & pinegen – Voxel Tree Generators
 
 This repo contains two simple standalone tools for generating `.vox` tree models:
