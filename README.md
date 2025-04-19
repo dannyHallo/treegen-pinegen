@@ -1,38 +1,69 @@
-<p align="center">
-  <img src="https://cdn.nostrcheck.me/fb7e6bb172c3dca7e29f7c7fcf3f57b2c82f5211db7e1f353efa272f9268e5e2.png" alt="treegen logo" />
-</p>
+# 🌲 treegen-pinegen
 
-<p align="center">
-  <img src="https://cdn.nostrcheck.me/8a72b1c8dfdd32fde9cbbbcfcb4cf446e69f49309ae37d67ec0503b81bda7e7b.png" alt="pinegen logo" />
-</p>
+Procedural Voxel Tree + Pine Tree Generator for MagicaVoxel
 
-# treegen & pinegen – Voxel Tree Generators
+Generate beautiful, customizable .vox trees using palettes, sliders, and pure Python magic.
 
-This repo contains two simple standalone tools for generating `.vox` tree models:
+Built with Python, Tkinter, and NumPy — no external 3D tools required.
 
-- **treegen** – creates classic, natural-looking trees
-- **pinegen** – creates cone-shaped pine trees
+## ✨ Features
 
-Both tools output **.vox files** that can be imported directly into **Teardown** maps or other voxel-based games that support the MagicaVoxel `.vox` format.
+- 🌳 Treegen – Oak-style branching tree generator
+- 🌲 Pinegen – Pine tree generator with cone-shaped leaf clusters
+- 🎨 Custom Palettes – Use .png palettes for different tree types
+- 🧩 Tabbed GUI – Switch between tree and pine generation in one app
+- 🎛️ Sliders for Everything – Size, twist, branch density, leafiness, and more
+- 💾 .VOX Export – Compatible with MagicaVoxel
+- 📁 Organized Output – Saves to output/tree/ and output/pine/
 
-## 📦 Downloads
+## 🚀 How to Run
 
-Each zip contains everything you need — just unzip and run the `.exe`.
+1. Install dependencies
+```bash
+pip install pillow numpy
+```
 
-- treegen.zip – treegen generator
-- pinegen.zip – pinegen generator
+2. Run the app
+```bash
+python treegen-pinegen.py
+```
 
-No installation required.
-Find these files under [Releases](https://github.com/NGNT/treegen-pinegen/releases) for easier downloading.
+## 🛠️ Build to .exe (Optional)
 
-## 🪵 How It Works
+You can compile it into a standalone executable using PyInstaller:
 
-- Run the app
-- Tweak the sliders and settings
-- Choose whether or not to open the file automatically after generation
-- Click "Generate tree"
-- A `.vox` file is created with your tree model, ready for import
+```bash
+pyinstaller --onefile --windowed --icon=treegen_icon.ico ^
+  --add-data "treegen_brand.png;." ^
+  --add-data "pinegen_brand.png;." ^
+  --add-data "palettes;palettes" ^
+  treegen-pinegen.py
+```
 
-Great for adding natural elements to voxel environments quickly and with custom variation.
+> 💡 On macOS/Linux, replace `;` with `:` in --add-data paths.
+
+## 🖼️ Palettes
+
+Each palette is a 256x1 PNG image with indexed colors.
+
+- Tree palettes: `palettes/tree/`
+- Pine palettes: `palettes/pine/`
+- Make sure to add new palettes to the internal dictionary in the script.
+
+## 👤 Credits
+
+Created by NGNT  
+With GUI and architecture support from ChatGPT 🤖  
+Inspired by nature. Powered by code.
+
+## 📜 License
+
+MIT — Free to use, remix, and plant digital forests 🌳🌲
 
 ---
+
+**Let me know if you want to add:**
+
+- 🌄 Screenshots
+- 🎞️ Demo GIF/video
+- 🏷️ Badges (MIT, Python, Made with ❤️) 

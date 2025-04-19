@@ -29,3 +29,6 @@ desktop.ini
 .vscode/
 .idea/
 *.swp
+
+treegen_output.txt
+pinegen_output.txt
