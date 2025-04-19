@@ -61,9 +61,3 @@ Inspired by nature. Powered by code.
 MIT — Free to use, remix, and plant digital forests 🌳🌲
 
 ---
-
-**Let me know if you want to add:**
-
-- 🌄 Screenshots
-- 🎞️ Demo GIF/video
-- 🏷️ Badges (MIT, Python, Made with ❤️) 
