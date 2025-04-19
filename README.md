@@ -28,6 +28,10 @@ pip install pillow numpy
 python treegen-pinegen.py
 ```
 
+## Downloads
+
+You can also find the pre-compiled .exe under [Releases](https://github.com/NGNT/treegen-pinegen/releases) to get right in.
+
 ## 🛠️ Build to .exe (Optional)
 
 You can compile it into a standalone executable using PyInstaller:
