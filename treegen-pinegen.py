@@ -438,11 +438,24 @@ def build_treegen_gui(tab):
         ("Seed", controls["seed"], 1, 9999)
     ]
 
+    tree_tooltips = {
+        "Size": "Controls overall height/scale of the tree",
+        "Trunk Size": "How thick the trunk appears",
+        "Spread": "How much branches spread out sideways",
+        "Twist": "How twisted or chaotic the branches are",
+        "Leafiness": "Controls how many leaves spawn",
+        "Gravity": "Positive pulls leaves up, negative pulls down",
+        "Iterations": "How complex/tall the tree structure is",
+        "Wide": "Controls base vs top branch bias (0 = base, 1 = top)",
+        "Seed": "Seed for randomness — same number = same tree"
+    }
+
     defaults = {label: var.get() for label, var, *_ in slider_defs}
 
     for label, var, mn, mx in slider_defs:
         row = ttk.Frame(tab)
         row.pack(fill="x", pady=4)
+
         ttk.Label(row, text=label).pack(side="left", padx=(0, 5))
         val_label = ttk.Label(row, text=f"{var.get():.2f}" if isinstance(var.get(), float) else str(var.get()))
         val_label.pack(side="right")
@@ -460,6 +473,10 @@ def build_treegen_gui(tab):
 
         ttk.Button(row, text="⭯", width=3, command=make_reset()).pack(side="right", padx=5)
         ttk.Scale(row, from_=mn, to=mx, variable=var, orient="horizontal", command=make_callback()).pack(fill="x", padx=5)
+
+        # ✅ Tooltip bindings
+        row.bind("<Enter>", lambda e, l=label: controls["status"].set(tree_tooltips.get(l, "")))
+        row.bind("<Leave>", lambda e: controls["status"].set("Ready"))
 
     ttk.Checkbutton(tab, text="Open file after generation", variable=controls["open_after"]).pack(pady=(5, 0))
 
@@ -481,6 +498,8 @@ def build_treegen_gui(tab):
 
     ttk.Button(tab, text="🌳 Generate Tree", command=generate).pack(pady=10)
     ttk.Label(tab, textvariable=controls["status"]).pack(pady=5)
+
+    return controls
     
 def build_pinegen_gui(tab):
     try:
@@ -535,12 +554,28 @@ def build_pinegen_gui(tab):
         ("Leaf Bias", controls["leaf_bias"], -1.0, 1.0),
         ("Seed", controls["seed"], 1, 9999)
     ]
+    
+    pine_tooltips = {
+        "Size": "Overall size/scale of the pine tree",
+        "Twist": "How wiggly the trunk is",
+        "Trunk Size": "Scales the width of the trunk",
+        "Trunk Height": "Height before branches appear",
+        "Branch Density": "How many side branches",
+        "Branch Length": "How far the branches grow",
+        "Branch Direction": "Tilt of the branches",
+        "Leafiness": "How much leaf coverage",
+        "Leaf Radius": "How far leaves spread outward from branch ends",
+        "Leaf Stretch": "Vertical stretch of leaf clusters (cone/tube shape)",
+        "Leaf Bias": "Controls leaf cluster tilt: -1 = downward, +1 = upward", 
+        "Seed": "Random seed for variation"
+    }
 
     defaults = {label: var.get() for label, var, *_ in slider_defs}
 
     for label, var, mn, mx in slider_defs:
         row = ttk.Frame(tab)
         row.pack(fill="x", pady=4)
+
         ttk.Label(row, text=label).pack(side="left", padx=(0, 5))
         val_label = ttk.Label(row, text=f"{var.get():.2f}" if isinstance(var.get(), float) else str(var.get()))
         val_label.pack(side="right")
@@ -558,6 +593,10 @@ def build_pinegen_gui(tab):
 
         ttk.Button(row, text="⭯", width=3, command=make_reset()).pack(side="right", padx=5)
         ttk.Scale(row, from_=mn, to=mx, variable=var, orient="horizontal", command=make_callback()).pack(fill="x", padx=5)
+
+        # ✅ Tooltip bindings
+        row.bind("<Enter>", lambda e, l=label: controls["status"].set(pine_tooltips.get(l, "")))
+        row.bind("<Leave>", lambda e: controls["status"].set("Ready"))
 
     ttk.Checkbutton(tab, text="Open file after generation", variable=controls["open_after"]).pack(pady=(5, 0))
 
@@ -579,6 +618,8 @@ def build_pinegen_gui(tab):
 
     ttk.Button(tab, text="🌲 Generate Pine Tree", command=generate).pack(pady=10)
     ttk.Label(tab, textvariable=controls["status"]).pack(pady=5)
+
+    return controls
 
 
 # === MAIN ENTRYPOINT ===
