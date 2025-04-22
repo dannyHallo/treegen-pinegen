@@ -55,10 +55,11 @@ def generate_treegen_tree(params, palette_name):
     gLeaves = []
 
     size = 150 * params['size'] / params['iterations']
-    gTrunkSize = params['trunksize'] * params['size'] * 6
+    gTrunkThickness = params['trunkthickness'] * params['size'] * 6
     wide = min(params['wide'], 0.95)
-    gBranchLength0 = size * (1 - wide)
-    gBranchLength1 = size * wide
+    
+    gBranchLengthStart = size * (1 - wide)
+    gBranchLengthEnd = size * wide
 
     def normalize(x, y, z):
         l = math.sqrt(x*x + y*y + z*z)
@@ -86,11 +87,11 @@ def generate_treegen_tree(params, palette_name):
 
     def get_branch_length(i):
         t = math.sqrt(i / params['iterations'])
-        return gBranchLength0 + t * (gBranchLength1 - gBranchLength0)
+        return gBranchLengthStart + t * (gBranchLengthEnd - gBranchLengthStart)
 
-    def get_branch_size(i):
+    def get_branch_thickness(i):
         t = math.sqrt(i / params['iterations'])
-        return (1 - t) * gTrunkSize
+        return (1 - t) * gTrunkThickness
 
     def get_branch_angle(i):
         t = math.sqrt(i / params['iterations'])
@@ -100,13 +101,16 @@ def generate_treegen_tree(params, palette_name):
         return math.sqrt(i / params['iterations'])
 
     def branches(x, y, z, dx, dy, dz, i):
-        l = get_branch_length(i)
-        s0 = get_branch_size(i)
-        s1 = get_branch_size(i+1)
-        x1 = x + dx * l
-        y1 = y + dy * l
-        z1 = z + dz * l
-        draw_line(x, y, z, x1, y1, z1, s0, s1)
+        branchLen = get_branch_length(i)
+
+        thicknessStart = get_branch_thickness(i)
+        thicknessEnd = get_branch_thickness(i+1)
+
+        x1 = x + dx * branchLen
+        y1 = y + dy * branchLen
+        z1 = z + dz * branchLen
+
+        draw_line(x, y, z, x1, y1, z1, thicknessStart, thicknessEnd)
 
         if i < (params['iterations'] - 1):
             b = 1
@@ -121,7 +125,6 @@ def generate_treegen_tree(params, palette_name):
                 dx2, dy2, dz2 = normalize(dx2, dy2, dz2)
                 branches(x1, y1, z1, dx2, dy2, dz2, i + 1)
         else:
-            gLeaves.append((x1, y1, z1))
             gLeaves.append(((x + x1)/2, (y + y1)/2, (z + z1)/2))
 
     leaf_voxels = []
@@ -225,7 +228,7 @@ def build_treegen_gui(tab):
     # === Sliders
     controls = {
         "size":        tk.DoubleVar(value=1.6),
-        "trunksize":   tk.DoubleVar(value=1.0),
+        "trunkthickness":   tk.DoubleVar(value=1.0),
         "spread":      tk.DoubleVar(value=0.5),
         "twisted":     tk.DoubleVar(value=0.5),
         "leaves":      tk.DoubleVar(value=1.0),
@@ -239,7 +242,7 @@ def build_treegen_gui(tab):
 
     slider_defs = [
         ("Size", controls["size"], 0.1, 3.0),
-        ("Trunk Size", controls["trunksize"], 0.1, 3.0),
+        ("Trunk Size", controls["trunkthickness"], 0.1, 3.0),
         ("Spread", controls["spread"], 0.0, 1.0),
         ("Twist", controls["twisted"], 0.0, 1.0),
         ("Leafiness", controls["leaves"], 0.0, 3.0),
