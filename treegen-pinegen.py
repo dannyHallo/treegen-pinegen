@@ -108,7 +108,7 @@ def generate_treegen_tree(params, palette_name):
         z1 = z + dz * l
         draw_line(x, y, z, x1, y1, z1, s0, s1)
 
-        if i < params['iterations']:
+        if i < (params['iterations'] - 1):
             b = 1
             var = i * 0.2 * params['twisted']
             if random.random() < get_branch_prob(i):
