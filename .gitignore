@@ -32,3 +32,7 @@ desktop.ini
 
 treegen_output.txt
 pinegen_output.txt
+
+/output/
+pinegen_counter.txt
+treegen_counter.txt
