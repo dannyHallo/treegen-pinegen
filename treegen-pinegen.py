@@ -85,19 +85,19 @@ def generate_treegen_tree(params, palette_name):
                                 trunk_voxels.append((vx, vy, vz))
 
     def get_branch_length(i):
-        t = math.sqrt((i - 1) / params['iterations'])
+        t = math.sqrt(i / params['iterations'])
         return gBranchLength0 + t * (gBranchLength1 - gBranchLength0)
 
     def get_branch_size(i):
-        t = math.sqrt((i - 1) / params['iterations'])
+        t = math.sqrt(i / params['iterations'])
         return (1 - t) * gTrunkSize
 
     def get_branch_angle(i):
-        t = math.sqrt((i - 1) / params['iterations'])
+        t = math.sqrt(i / params['iterations'])
         return 2.0 * params['spread'] * t
 
     def get_branch_prob(i):
-        return math.sqrt((i - 1) / params['iterations'])
+        return math.sqrt(i / params['iterations'])
 
     def branches(x, y, z, dx, dy, dz, i):
         l = get_branch_length(i)
@@ -148,7 +148,7 @@ def generate_treegen_tree(params, palette_name):
                 if voxels[x, y, z] == 0:
                     voxels[x, y, z] = idx
 
-    branches(GRID//2, GRID//2, 0, 0, 0, 1, 1)
+    branches(GRID//2, GRID//2, 0, 0, 0, 1, 0)
     add_leaves()
 
     # for simplicity, only use the first color from the palette
